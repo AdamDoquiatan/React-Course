@@ -1,15 +1,16 @@
 console.log('Running')
 
-var templateObject= {
-    title : 'The Title!',
-    subtitle : 'The Subtitle!'
+var app = {
+    title : 'The Other Title!',
+    subtitle : 'The Subtitle!',
+    options : ['One', 'Two']
 }
 
-// JSX - JavaScript XML
 var template = (
     <div>
-        <h1>{templateObject.title}</h1>
-        <p>{templateObject.subtitle}</p>
+        <h1>{app.title}</h1>
+        {app.subtitle && <p>{app.subtitle}</p>}
+        <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
         <ol>
             <li>Item One</li>
             <li>Item Two</li>
@@ -18,16 +19,22 @@ var template = (
 )
 
 var user = {
-    name : 'Adam',
+    name: 'Adam',
     age : '29',
     location : 'Vancouver'
 }
 
+function getLocation(location) {
+    if(location) {
+        return <p>Location: {location}</p>
+    }
+}
+
 var template2 = (
     <div>
-        <h1>{user.name}</h1>
-        <p>Age: {user.age}</p>
-        <p>Location: {user.location}</p>    
+        <h1>{user.name ? user.name : 'Anonymous'}</h1>
+        {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
+        {getLocation(user.location)}
     </div>
 )
 
